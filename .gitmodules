@@ -1,3 +1,3 @@
 [submodule "Submod"]
-	url = https://github.com/Wardrek/oh-my-zsh.git
+	url = https://github.com/Wardrek/ohmyzsh.git
 	branch = Development
