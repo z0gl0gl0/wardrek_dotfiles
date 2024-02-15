@@ -8,10 +8,9 @@ export ZSH="$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+# ZSH_THEME="robbyrussell"
 ZSH_THEME="robbyrussell"
-# ZSH_THEME="awesomepanda"
-# ZSH_THEME="gruvbox"
-# SOLARIZED_THEME="dark"
+ZSH_COLORIZE_CHROMA_FORMATTER=terminal256
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -73,7 +72,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting ssh-agent git)
+plugins=(git zsh-autosuggestions ssh-agent colorize cp python sudo themes)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -81,8 +80,18 @@ source $ZSH/oh-my-zsh.sh
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
+# Use known_hosts for hostname completion.
+if [ -f ~/.ssh/known_hosts ] ; then
+    zstyle ':completion:*' hosts $( sed 's/[, ].*$//' $HOME/.ssh/known_hosts )
+    zstyle ':completion:*:*:(ssh|scp):*:*' hosts `sed 's/^\([^ ,]*\).*$/\1/' ~/.ssh/known_hosts`
+fi
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export GEM_HOME="$(ruby -e 'puts Gem.user_dir')"
+export PATH="$PATH:$GEM_HOME/bin"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -94,13 +103,15 @@ source $ZSH/oh-my-zsh.sh
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+source ~/.zsh_profile
+
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
-# Aliases
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
+alias pulse="/opt/pulsesecure/bin/pulselauncher -U https://domicile.ifremer.fr/calcul -r vpn-Ifremer -u hg3253c"
+alias sshuttle_jeanzay="sshuttle --dns -HN @vpn_imt.conf"
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
