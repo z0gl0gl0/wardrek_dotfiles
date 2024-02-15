@@ -7,6 +7,8 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "G", "Gzz")
+vim.keymap.set("n", "gg", "ggzz")
 
 -- greatest remap ever
 vim.keymap.set("x", "<leader>p", [["_dP]])
@@ -47,6 +49,22 @@ vim.keymap.set("n", "<c-up>", "<c-w>+")
 vim.keymap.set("n", "<c-down>", "<c-w>-")
 vim.keymap.set("n", "<c-left>", "<c-w>>")
 vim.keymap.set("n", "<c-right>", "<c-w><")
+
+
+-- Move selected text up/down in visual mode
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
+
+-- Reselect the last visual selection
+vim.keymap.set("x", "<", function()
+    vim.cmd("normal! <")
+    vim.cmd("normal! gv")
+end)
+
+vim.keymap.set("x", ">", function()
+	vim.cmd("normal! >")
+	vim.cmd("normal! gv")
+end)
 
 -- Words count
 -- wk.register({
