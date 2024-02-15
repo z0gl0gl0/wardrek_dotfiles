@@ -56,6 +56,9 @@ return require('packer').startup(function(use)
         }
     }
 
+    -- Godot lsp
+    use('mfussenegger/nvim-dap')
+
     -- Git indicator
     use('airblade/vim-gitgutter')
 

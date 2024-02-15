@@ -65,6 +65,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
 --   vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
 -- end)
 
+-- LSP Config for Godot
+
 lsp.setup()
 
 require'lspconfig'.pylsp.setup{
@@ -78,6 +80,10 @@ require'lspconfig'.pylsp.setup{
             },
         },
     },
+}
+
+require'lspconfig'.gdscript.setup{
+  filetypes = { "gd", "gdscript", "gdscript3" },
 }
 
 local has_words_before = function()
