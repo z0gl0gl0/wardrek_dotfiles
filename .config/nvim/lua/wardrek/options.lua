@@ -9,9 +9,6 @@ vim.opt.guicursor = ""
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
--- Enable cursor line highlight
-vim.opt.cursorline = true
-
 -- Set tabs to 4 spaces
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -43,7 +40,6 @@ vim.opt.termguicolors = true
 
 -- Always keep 8 lines above/below cursor unless at start/end of file
 vim.opt.scrolloff = 8
-vim.opt.isfname:append("@-@")
 
 -- Decrease uptade time
 vim.opt.updatetime = 50

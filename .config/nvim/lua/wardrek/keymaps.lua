@@ -68,13 +68,13 @@ nnoremap("<c-left>", "<c-w>>")
 nnoremap("<c-right>", "<c-w><")
 
 -- Goto next diagnostic of any severity
-nnoremap("<a-<>", function()
+nnoremap("]d", function()
 	vim.diagnostic.goto_next({})
 	vim.api.nvim_feedkeys("zz", "n", false)
 end)
 
 -- Goto prev diagnostic of any severity
-nnoremap("<a->>", function()
+nnoremap("[d", function()
 	vim.diagnostic.goto_prev({})
 	vim.api.nvim_feedkeys("zz", "n", false)
 end)
@@ -128,17 +128,12 @@ xnoremap(">", function()
 	vim.cmd("normal! gv")
 end)
 
--- Words count
--- wk.register({
---     c = {
---         name = "Count",
---         c = { "<cmd>!wc -m %<CR>", "Characters count" },
---         w = { "<cmd>!wc -w %<CR>", "Words count" },
---         l = { "<cmd>!wc -l %<CR>", "Lines count" },
---     },
--- }, { prefix = "<leader>" })
+-- Characters/Words/Lines count
+nnoremap("<leader>cc", "<cmd>!wc -m %<cr>")
+nnoremap("<leader>cw", "<cmd>!wc -w %<cr>")
+nnoremap("<leader>cl", "<cmd>!wc -l %<cr>")
 
--- Plugins remap
+-- Plugins remap --
 
 -- Telescope
 local telescope = require('telescope.builtin')
@@ -176,19 +171,15 @@ end)
 nnoremap("<leader>1", function()
 	harpoon_ui.nav_file(1)
 end)
-
 nnoremap("<leader>2", function()
-	harpoon_ui.nav_file(2)
+    harpoon_ui.nav_file(2)
 end)
-
 nnoremap("<leader>3", function()
 	harpoon_ui.nav_file(3)
 end)
-
 nnoremap("<leader>4", function()
 	harpoon_ui.nav_file(4)
 end)
-
 nnoremap("<leader>5", function()
 	harpoon_ui.nav_file(5)
 end)
@@ -206,43 +197,55 @@ nnoremap("<leader>u", vim.cmd.UndotreeToggle)
 
 -- LSP Keybinds (exports a function to be used in ../../after/plugin/lsp.lua b/c we need a reference to the current buffer) --
 M.map_lsp_keybinds = function(buffer_number)
+    -- Rename variable
 	nnoremap("<leader>rn", vim.lsp.buf.rename, { desc = "LSP: [R]e[n]ame", buffer = buffer_number })
+
+    -- LSP code action
 	nnoremap("<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: [C]ode [A]ction", buffer = buffer_number })
 
+    -- Goto definition
 	nnoremap("gd", vim.lsp.buf.definition, { desc = "LSP: [G]oto [D]efinition", buffer = buffer_number })
 
 	-- Telescope LSP keybinds --
+    -- Goto reference
 	nnoremap(
 		"gr",
 		require("telescope.builtin").lsp_references,
 		{ desc = "LSP: [G]oto [R]eferences", buffer = buffer_number }
 	)
 
+    -- Goto implementation
 	nnoremap(
 		"gi",
 		require("telescope.builtin").lsp_implementations,
 		{ desc = "LSP: [G]oto [I]mplementation", buffer = buffer_number }
 	)
 
+    -- List of symbols in the current buffer
 	nnoremap(
 		"<leader>bs",
 		require("telescope.builtin").lsp_document_symbols,
 		{ desc = "LSP: [B]uffer [S]ymbols", buffer = buffer_number }
 	)
 
+    -- List of symbols in the workspace
 	nnoremap(
 		"<leader>ps",
 		require("telescope.builtin").lsp_workspace_symbols,
 		{ desc = "LSP: [P]roject [S]ymbols", buffer = buffer_number }
 	)
 
-	-- See `:help K` for why this keymap
+    -- Hover documentation
 	nnoremap("K", vim.lsp.buf.hover, { desc = "LSP: Hover Documentation", buffer = buffer_number })
+
+    -- Signature documentation
 	nnoremap("<leader>k", vim.lsp.buf.signature_help, { desc = "LSP: Signature Documentation", buffer = buffer_number })
 	inoremap("<C-k>", vim.lsp.buf.signature_help, { desc = "LSP: Signature Documentation", buffer = buffer_number })
 
-	-- Lesser used LSP functionality
+	-- Goto declaration
 	nnoremap("gD", vim.lsp.buf.declaration, { desc = "LSP: [G]oto [D]eclaration", buffer = buffer_number })
+
+    -- Type definition
 	nnoremap("td", vim.lsp.buf.type_definition, { desc = "LSP: [T]ype [D]efinition", buffer = buffer_number })
 end
 

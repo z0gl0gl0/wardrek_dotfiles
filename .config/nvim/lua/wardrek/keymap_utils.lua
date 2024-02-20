@@ -1,5 +1,6 @@
 local M = {}
 
+-- Remap bindkey functions
 local function bind(op, outer_opts)
 	outer_opts = vim.tbl_extend("force", { noremap = true, silent = true }, outer_opts or {})
 

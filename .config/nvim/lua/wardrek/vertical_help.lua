@@ -1,3 +1,4 @@
+-- Open help panel in a vsplit to the left
 vim.api.nvim_create_autocmd("FileType", {
 	group = vim.api.nvim_create_augroup("vertical_help", { clear = true }),
 	pattern = "help",

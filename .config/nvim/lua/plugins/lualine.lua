@@ -48,11 +48,18 @@ return {
             sections = {
                 lualine_a = {'mode'},
                 lualine_b = {
-                    { "branch", icon = "", fmt = truncate_branch_name },
+                    {
+                        "branch",
+                        icon = "",
+                        fmt = truncate_branch_name
+                    },
                     "diff",
                 },
                 lualine_c = {
-                    { 'filename', path = 1 },
+                    {
+                        'filename',
+                        path = 1,
+                    },
                     harpoon_component,
                 },
                 lualine_x = {'diagnostics'},

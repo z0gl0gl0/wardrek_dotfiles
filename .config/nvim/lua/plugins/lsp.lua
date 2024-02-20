@@ -36,7 +36,7 @@ return {
 
         require("fidget").setup({
             notification = {
-                redirect =                    -- Conditionally redirect notifications to another backend
+                redirect =  -- Conditionally redirect notifications to another backend
                     function(msg, level, opts)
                         if opts and opts.on_open then
                             return require("fidget.integration.nvim-notify").delegate(msg, level, opts)
@@ -67,6 +67,7 @@ return {
             -- No preselection
             preselect = 'None',
 
+            -- Add borders to floating windows
             window = {
                 completion = cmp.config.window.bordered(),
                 documentation = cmp.config.window.bordered(),
@@ -131,6 +132,7 @@ return {
             }),
 
             -- Enable pictogram icons for lsp/autocompletion
+            ---@diagnostic disable-next-line: missing-fields
             formatting = {
                 expandable_indicator = true,
                 format = lspkind.cmp_format({

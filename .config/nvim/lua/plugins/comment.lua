@@ -14,7 +14,7 @@ return {
         -- Comment configuration object _can_ take a partial and is merged in
         ---@diagnostic disable-next-line: missing-fields
         require("Comment").setup({
-            ignore = '^$',
+            ignore = '^$', -- Ignore empty lines
             pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
         })
     end,
