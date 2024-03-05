@@ -187,10 +187,17 @@ end)
 -- Fugitive
 nnoremap("<leader>gs", vim.cmd.Git)
 
--- Gitutter
+-- Gitutter --
+-- Stage hunk under cursor
 nnoremap("<leader>hs", "<cmd>GitGutterStageHunk<cr>")
+-- Undo hunk under cursor
 nnoremap("<leader>hu", "<cmd>GitGutterUndoHunk<cr>")
+-- Preview branch hunk under cursor
 nnoremap("<leader>hp", "<cmd>GitGutterPreviewHunk<cr>")
+-- Goto next hunk
+nnoremap("]h", "<cmd>GitGutterNextHunk<cr>")
+-- Goto prev hunk
+nnoremap("[h", "<cmd>GitGutterPrevHunk<cr>")
 
 -- Undotree
 nnoremap("<leader>u", vim.cmd.UndotreeToggle)
