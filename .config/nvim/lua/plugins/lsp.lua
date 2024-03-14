@@ -42,6 +42,11 @@ return {
                             return require("fidget.integration.nvim-notify").delegate(msg, level, opts)
                         end
                     end,
+                window = {
+                    winblend = 0,
+                    border = 'rounded',
+                    relative = "editor",
+                },
             },
         })
 
