@@ -9,6 +9,9 @@ vim.opt.guicursor = ""
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+-- Enable highlight of CursorLineNr
+vim.opt.cursorline = true
+
 -- Set tabs to 4 spaces
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
