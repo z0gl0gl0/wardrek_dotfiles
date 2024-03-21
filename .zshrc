@@ -108,6 +108,8 @@ alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias pulse="/opt/pulsesecure/bin/pulselauncher -U https://domicile.ifremer.fr/calcul -r vpn-Ifremer -u hg3253c"
 alias sshuttle_jeanzay="sshuttle --dns -HN @vpn_imt.conf"
 
+alias v='nvim'
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/h21georg/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
