@@ -176,50 +176,89 @@ end)
 
 -- Add current file to harpoon
 nnoremap("<leader>ha", function()
-	harpoon_mark.add_file()
+    harpoon_mark.add_file()
 end)
 
 -- Remove current file from harpoon
 nnoremap("<leader>hr", function()
-	harpoon_mark.rm_file()
+    harpoon_mark.rm_file()
 end)
 
 -- Remove all files from harpoon
 nnoremap("<leader>hc", function()
-	harpoon_mark.clear_all()
+    harpoon_mark.clear_all()
 end)
 
 -- Quickly jump to harpooned files
 nnoremap("<leader>1", function()
-	harpoon_ui.nav_file(1)
+    harpoon_ui.nav_file(1)
 end)
 nnoremap("<leader>2", function()
     harpoon_ui.nav_file(2)
 end)
 nnoremap("<leader>3", function()
-	harpoon_ui.nav_file(3)
+    harpoon_ui.nav_file(3)
 end)
 nnoremap("<leader>4", function()
-	harpoon_ui.nav_file(4)
+    harpoon_ui.nav_file(4)
 end)
 nnoremap("<leader>5", function()
-	harpoon_ui.nav_file(5)
+    harpoon_ui.nav_file(5)
 end)
 
--- Fugitive
-nnoremap("<leader>gs", vim.cmd.Git)
+-- Neogit
+local neogit = require('neogit')
+nnoremap("<leader>gs", neogit.open)
+nnoremap("<leader>gc", ":Neogit commit<cr>")
+nnoremap("<leader>gp", ":Neogit pull<cr>")
+nnoremap("<leader>gP", ":Neogit push<cr>")
+nnoremap("<leader>gb", ":Telescope git_branches<cr>")
 
--- Gitutter --
--- Stage hunk under cursor
-nnoremap("<leader>hs", "<cmd>GitGutterStageHunk<cr>")
--- Undo hunk under cursor
-nnoremap("<leader>hu", "<cmd>GitGutterUndoHunk<cr>")
--- Preview branch hunk under cursor
-nnoremap("<leader>hp", "<cmd>GitGutterPreviewHunk<cr>")
--- Goto next hunk
-nnoremap("]h", "<cmd>GitGutterNextHunk<cr>")
--- Goto prev hunk
-nnoremap("[h", "<cmd>GitGutterPrevHunk<cr>")
+-- -- Gitutter --
+-- -- Stage hunk under cursor
+-- nnoremap("<leader>hs", "<cmd>GitGutterStageHunk<cr>")
+-- -- Undo hunk under cursor
+-- nnoremap("<leader>hu", "<cmd>GitGutterUndoHunk<cr>")
+-- -- Preview branch hunk under cursor
+-- nnoremap("<leader>hp", "<cmd>GitGutterPreviewHunk<cr>")
+-- -- Goto next hunk
+-- nnoremap("]h", "<cmd>GitGutterNextHunk<cr>")
+-- -- Goto prev hunk
+-- nnoremap("[h", "<cmd>GitGutterPrevHunk<cr>")
+
+-- Gitsigns --
+M.map_gitsigns_keybinds = function(buffer_number)
+    local gs = package.loaded.gitsigns
+    -- Navigation
+    nnoremap(']h', function()
+        if vim.wo.diff then return ']h' end
+        vim.schedule(function() gs.next_hunk() end)
+        return '<Ignore>'
+    end, { expr = true, buffer = buffer_number })
+
+    nnoremap('[h', function()
+        if vim.wo.diff then return '[h' end
+        vim.schedule(function() gs.prev_hunk() end)
+        return '<Ignore>'
+    end, { expr = true, buffer = buffer_number })
+
+    -- Actions --
+
+    -- Stage hunk
+    nnoremap('<leader>hs', gs.stage_hunk, { buffer = buffer_number })
+    vnoremap('<leader>hs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end, { buffer = buffer_number })
+    -- Stage buffer
+    nnoremap('<leader>hS', gs.stage_buffer, { buffer = buffer_number })
+    -- Undo stage hunk
+    nnoremap('<leader>hu', gs.undo_stage_hunk, { buffer = buffer_number })
+    -- Reset hunk
+    nnoremap('<leader>hr', gs.reset_hunk, { buffer = buffer_number })
+    vnoremap('<leader>hr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end, { buffer = buffer_number })
+    -- Reset buffer
+    nnoremap('<leader>hR', gs.reset_buffer, { buffer = buffer_number })
+    -- Preview hunk
+    nnoremap('<leader>hp', gs.preview_hunk, { buffer = buffer_number })
+end
 
 -- Undotree
 nnoremap("<leader>u", vim.cmd.UndotreeToggle)
