@@ -139,7 +139,9 @@ nnoremap("<leader>cl", "<cmd>!wc -l %<cr>")
 
 -- Telescope
 local telescope = require('telescope.builtin')
-nnoremap('<leader>fp', telescope.find_files, {})
+nnoremap('<leader>fp',
+    "<cmd>lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})<cr>",
+    {})
 nnoremap('<leader>fg', telescope.git_files, {})
 nnoremap('<leader>fb', telescope.buffers, {})
 nnoremap('<leader>fr', telescope.oldfiles, {})
@@ -248,14 +250,16 @@ M.map_gitsigns_keybinds = function(buffer_number)
 
     -- Stage hunk
     nnoremap('<leader>hs', gs.stage_hunk, { buffer = buffer_number })
-    vnoremap('<leader>hs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end, { buffer = buffer_number })
+    vnoremap('<leader>hs', function() gs.stage_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
+        { buffer = buffer_number })
     -- Stage buffer
     nnoremap('<leader>hS', gs.stage_buffer, { buffer = buffer_number })
     -- Undo stage hunk
     nnoremap('<leader>hu', gs.undo_stage_hunk, { buffer = buffer_number })
     -- Reset hunk
     nnoremap('<leader>hr', gs.reset_hunk, { buffer = buffer_number })
-    vnoremap('<leader>hr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end, { buffer = buffer_number })
+    vnoremap('<leader>hr', function() gs.reset_hunk { vim.fn.line('.'), vim.fn.line('v') } end,
+        { buffer = buffer_number })
     -- Reset buffer
     nnoremap('<leader>hR', gs.reset_buffer, { buffer = buffer_number })
     -- Preview hunk
