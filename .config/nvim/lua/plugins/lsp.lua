@@ -30,6 +30,8 @@ return {
 
         -- Load snippets
         require("luasnip.loaders.from_vscode").lazy_load()
+        require("luasnip").filetype_extend("python", { "pydoc" })
+        require("luasnip").filetype_extend("lua", { "luadoc" })
 
         -- Use neodev to configure lua_ls in nvim directories - must load before lspconfig
         require("neodev").setup()
