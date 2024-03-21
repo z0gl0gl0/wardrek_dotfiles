@@ -7,6 +7,7 @@ height = 30
 offset-y = 0
 bottom = true
 fixed-center = true
+line-size = 2
 
 wm-restack = i3
 
