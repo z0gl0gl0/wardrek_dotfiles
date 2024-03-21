@@ -14,7 +14,9 @@ vnoremap("<space>", "<nop>")
 nnoremap("<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
 -- Open file tree
-nnoremap("<leader>e", vim.cmd.Ex)
+-- nnoremap("<leader>e", vim.cmd.Ex)
+nnoremap("<leader>e", '<cmd>Neotree reveal<cr>')
+nnoremap("<leader>gt", '<cmd>Neotree git_status<cr>')
 
 -- Center buffer while navigating
 nnoremap("J", "mzJ`z")
