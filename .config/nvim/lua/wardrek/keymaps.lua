@@ -143,6 +143,28 @@ nnoremap('<leader>fb', telescope.buffers, {})
 nnoremap('<leader>fr', telescope.oldfiles, {})
 nnoremap('<leader>fl', telescope.current_buffer_fuzzy_find, {})
 
+-- Trouble
+nnoremap('<leader>tt', function()
+    require("trouble").toggle('workspace_diagnostics')
+end)
+
+nnoremap('<leader>td', function()
+    require("trouble").toggle('todo')
+end)
+--
+-- Trouble: jumpings
+vim.keymap.set("n", "]t", function()
+    require("trouble").next({ skip_groups = true, jump = true })
+end, {})
+
+vim.keymap.set("n", "[t", function()
+    require("trouble").previous({ skip_groups = true, jump = true })
+end, {})
+
+-- Todo-comment
+nnoremap('<leader>ft', '<cmd>TodoTelescope<cr>', {})
+
+
 -- Harpoon
 local harpoon_ui = require("harpoon.ui")
 local harpoon_mark = require("harpoon.mark")

@@ -14,6 +14,12 @@ function ColorMyPencils(color)
     vim.api.nvim_set_hl(0, "LineNr", { fg = "#928374", bg = "none" })
     -- Current line number highlighted
     vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#fabd2f", bg = "none", bold = true })
+
+    -- Diagnostic messages colors
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextError", { link="DiagnosticFloatingError" })
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextWarn", { link="DiagnosticFloatingWarn" })
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextInfo", { link="DiagnosticFloatingInfo" })
+    vim.api.nvim_set_hl(0, "DiagnosticVirtualTextHint", { link="DiagnosticFloatingHint" })
 end
 
 return {
@@ -21,8 +27,6 @@ return {
     lazy = false, -- make sure we load this during startup
     priority = 1000, -- make sure to load this before all other plugins
     config = function()
-        vim.cmd.colorscheme("gruvbox-material")
-
         ColorMyPencils()
     end,
 }
