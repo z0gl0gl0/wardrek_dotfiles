@@ -35,7 +35,7 @@ return {
                         icon_hl = '@variable',
                         desc = 'Files',
                         group = 'Label',
-                        action = 'Telescope find_files',
+                        action = "lua require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})",
                         key = 'f',
                     },
                     {
