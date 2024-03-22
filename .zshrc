@@ -104,7 +104,6 @@ source ~/.zsh_profile
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 alias pulse="/opt/pulsesecure/bin/pulselauncher -U https://domicile.ifremer.fr/calcul -r vpn-Ifremer -u hg3253c"
 alias sshuttle_jeanzay="sshuttle --dns -HN @vpn_imt.conf"
 
